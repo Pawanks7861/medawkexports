@@ -257,15 +257,15 @@ function app_init_admin_sidebar_menu_items()
         ]);
     }
 
-    if (staff_can('view',  'knowledge_base')) {
-        $CI->app_menu->add_sidebar_menu_item('knowledge-base', [
-            'name'     => _l('als_kb'),
-            'href'     => admin_url('knowledge_base'),
-            'icon'     => 'fa-regular fa-folder-closed',
-            'position' => 50,
-            'badge'    => [],
-        ]);
-    }
+    // if (staff_can('view',  'knowledge_base')) {
+    //     $CI->app_menu->add_sidebar_menu_item('knowledge-base', [
+    //         'name'     => _l('als_kb'),
+    //         'href'     => admin_url('knowledge_base'),
+    //         'icon'     => 'fa-regular fa-folder-closed',
+    //         'position' => 50,
+    //         'badge'    => [],
+    //     ]);
+    // }
 
     // Utilities
     $CI->app_menu->add_sidebar_menu_item('utilities', [
@@ -350,43 +350,43 @@ function app_init_admin_sidebar_menu_items()
         ]);
     }
 
-    if (staff_can('view',  'reports')) {
-        $CI->app_menu->add_sidebar_children_item('reports', [
-            'slug'     => 'sales-reports',
-            'name'     => _l('als_reports_sales_submenu'),
-            'href'     => admin_url('reports/sales'),
-            'position' => 5,
-            'badge'    => [],
-        ]);
-        $CI->app_menu->add_sidebar_children_item('reports', [
-            'slug'     => 'expenses-reports',
-            'name'     => _l('als_reports_expenses'),
-            'href'     => admin_url('reports/expenses'),
-            'position' => 10,
-            'badge'    => [],
-        ]);
-        $CI->app_menu->add_sidebar_children_item('reports', [
-            'slug'     => 'expenses-vs-income-reports',
-            'name'     => _l('als_expenses_vs_income'),
-            'href'     => admin_url('reports/expenses_vs_income'),
-            'position' => 15,
-            'badge'    => [],
-        ]);
-        $CI->app_menu->add_sidebar_children_item('reports', [
-            'slug'     => 'leads-reports',
-            'name'     => _l('als_reports_leads_submenu'),
-            'href'     => admin_url('reports/leads'),
-            'position' => 20,
-            'badge'    => [],
-        ]);
-        $CI->app_menu->add_sidebar_children_item('reports', [
-            'slug'     => 'knowledge-base-reports',
-            'name'     => _l('als_kb_articles_submenu'),
-            'href'     => admin_url('reports/knowledge_base_articles'),
-            'position' => 30,
-            'badge'    => [],
-        ]);
-    }
+    // if (staff_can('view',  'reports')) {
+    //     $CI->app_menu->add_sidebar_children_item('reports', [
+    //         'slug'     => 'sales-reports',
+    //         'name'     => _l('als_reports_sales_submenu'),
+    //         'href'     => admin_url('reports/sales'),
+    //         'position' => 5,
+    //         'badge'    => [],
+    //     ]);
+    //     $CI->app_menu->add_sidebar_children_item('reports', [
+    //         'slug'     => 'expenses-reports',
+    //         'name'     => _l('als_reports_expenses'),
+    //         'href'     => admin_url('reports/expenses'),
+    //         'position' => 10,
+    //         'badge'    => [],
+    //     ]);
+    //     $CI->app_menu->add_sidebar_children_item('reports', [
+    //         'slug'     => 'expenses-vs-income-reports',
+    //         'name'     => _l('als_expenses_vs_income'),
+    //         'href'     => admin_url('reports/expenses_vs_income'),
+    //         'position' => 15,
+    //         'badge'    => [],
+    //     ]);
+    //     $CI->app_menu->add_sidebar_children_item('reports', [
+    //         'slug'     => 'leads-reports',
+    //         'name'     => _l('als_reports_leads_submenu'),
+    //         'href'     => admin_url('reports/leads'),
+    //         'position' => 20,
+    //         'badge'    => [],
+    //     ]);
+    //     $CI->app_menu->add_sidebar_children_item('reports', [
+    //         'slug'     => 'knowledge-base-reports',
+    //         'name'     => _l('als_kb_articles_submenu'),
+    //         'href'     => admin_url('reports/knowledge_base_articles'),
+    //         'position' => 30,
+    //         'badge'    => [],
+    //     ]);
+    // }
 
     // Setup menu
     if (staff_can('view',  'staff')) {
