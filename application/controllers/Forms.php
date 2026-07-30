@@ -505,40 +505,9 @@ class Forms extends ClientsController
                         $var8 = 'Youtube video link: https://shorturl.at/iTB79 Location Link: https://shorturl.at/visC4';
                         $mediaLink = 'https://kautilya.n360.site/assets/images/whatimg.png';
 
-                        // Build the URL with proper encoding
-                        $url = 'https://webhooks.whatapi.in/webhook/685e76df1d1fd0c920b52928?' . http_build_query([
-                            'number' => '91' . $phone,
-                            'message' => $message,
-                            'var1' => $var1,
-                            'var2' => $var2,
-                            'var3' => $var3,
-                            'var4' => $var4,
-                            'var5' => $var5,
-                            'var6' => $var6,
-                            'var7' => $var7,
-                            'var8' => $var8,
-                            'medialink' => $mediaLink
-                        ]);
+                        
 
-                        // Initialize cURL
-                        $ch = curl_init();
-                        curl_setopt_array($ch, [
-                            CURLOPT_URL => $url,
-                            CURLOPT_RETURNTRANSFER => true,
-                            CURLOPT_FOLLOWLOCATION => true,
-                            CURLOPT_MAXREDIRS => 10,
-                            CURLOPT_TIMEOUT => 30,
-                            CURLOPT_SSL_VERIFYPEER => true, // Set to false if you have SSL issues
-                            CURLOPT_HTTPHEADER => [
-                                'Accept: application/json'
-                            ]
-                        ]);
-
-                        // Execute and handle response
-                        $response = curl_exec($ch);
-                        $error = curl_error($ch);
-                        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                        curl_close($ch);
+                        
                     } elseif ($this->input->post('key') == '297b1a90ba97a2f497c068b45d91a630') {
                         $regular_fields['projects']  = 2;
                         $assigned = 16;
@@ -554,40 +523,12 @@ class Forms extends ClientsController
                         $var8 = 'Enquire: https://kautilyadevelopers.in/project/kautilya-two20/';
                         $mediaLink = 'https://kautilya.n360.site/assets/pdf/Kautilya_Two20_Brochure.pdf';
 
-                        // Build the URL with proper encoding
-                        $url = 'https://webhooks.whatapi.in/webhook/685e76df1d1fd0c920b52928?' . http_build_query([
-                            'number' => '91' . $phone,
-                            'message' => $message,
-                            'var1' => $var1,
-                            'var2' => $var2,
-                            'var3' => $var3,
-                            'var4' => $var4,
-                            'var5' => $var5,
-                            'var6' => $var6,
-                            'var7' => $var7,
-                            'var8' => $var8,
-                            'medialink' => $mediaLink
-                        ]);
+                       
 
                         // Initialize cURL
-                        $ch = curl_init();
-                        curl_setopt_array($ch, [
-                            CURLOPT_URL => $url,
-                            CURLOPT_RETURNTRANSFER => true,
-                            CURLOPT_FOLLOWLOCATION => true,
-                            CURLOPT_MAXREDIRS => 10,
-                            CURLOPT_TIMEOUT => 30,
-                            CURLOPT_SSL_VERIFYPEER => true, // Set to false if you have SSL issues
-                            CURLOPT_HTTPHEADER => [
-                                'Accept: application/json'
-                            ]
-                        ]);
+                        
 
-                        // Execute and handle response
-                        $response = curl_exec($ch);
-                        $error = curl_error($ch);
-                        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                        curl_close($ch);
+                       
                     } elseif ($this->input->post('key') == '7764a894c046848bfdaadf403ae7816c') {
                         $regular_fields['projects']  = 3;
 
@@ -604,40 +545,9 @@ class Forms extends ClientsController
                         $mediaLink = 'https://kautilya.n360.site/assets/images/nilay.png';
 
                         // Build the URL with proper encoding
-                        $url = 'https://webhooks.whatapi.in/webhook/685e76df1d1fd0c920b52928?' . http_build_query([
-                            'number' => '91' . $phone,
-                            'message' => $message,
-                            'var1' => $var1,
-                            'var2' => $var2,
-                            'var3' => $var3,
-                            'var4' => $var4,
-                            'var5' => $var5,
-                            'var6' => $var6,
-                            'var7' => $var7,
-                            'var8' => $var8,
-                            'medialink' => $mediaLink
-                        ]);
+                       
 
-                        // Initialize cURL
-                        $ch = curl_init();
-                        curl_setopt_array($ch, [
-                            CURLOPT_URL => $url,
-                            CURLOPT_RETURNTRANSFER => true,
-                            CURLOPT_FOLLOWLOCATION => true,
-                            CURLOPT_MAXREDIRS => 10,
-                            CURLOPT_TIMEOUT => 30,
-                            CURLOPT_SSL_VERIFYPEER => true, // Set to false if you have SSL issues
-                            CURLOPT_HTTPHEADER => [
-                                'Accept: application/json'
-                            ]
-                        ]);
-
-                        // Execute and handle response
-                        $response = curl_exec($ch);
-                        $error = curl_error($ch);
-                        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                        curl_close($ch);
-                        $assigned = 20;
+                        
                     } elseif ($this->input->post('key') == 'c4d03cf1c434fbc47064572d7e8affb1') {
                         $regular_fields['projects']  = $this->input->post('project');
 
@@ -658,39 +568,12 @@ class Forms extends ClientsController
                             $mediaLink = 'https://kautilya.n360.site/assets/images/whatimg.png';
 
                             // Build the URL with proper encoding
-                            $url = 'https://webhooks.whatapi.in/webhook/685e76df1d1fd0c920b52928?' . http_build_query([
-                                'number' => '91' . $phone,
-                                'message' => $message,
-                                'var1' => $var1,
-                                'var2' => $var2,
-                                'var3' => $var3,
-                                'var4' => $var4,
-                                'var5' => $var5,
-                                'var6' => $var6,
-                                'var7' => $var7,
-                                'var8' => $var8,
-                                'medialink' => $mediaLink
-                            ]);
-
+                            
                             // Initialize cURL
-                            $ch = curl_init();
-                            curl_setopt_array($ch, [
-                                CURLOPT_URL => $url,
-                                CURLOPT_RETURNTRANSFER => true,
-                                CURLOPT_FOLLOWLOCATION => true,
-                                CURLOPT_MAXREDIRS => 10,
-                                CURLOPT_TIMEOUT => 30,
-                                CURLOPT_SSL_VERIFYPEER => true, // Set to false if you have SSL issues
-                                CURLOPT_HTTPHEADER => [
-                                    'Accept: application/json'
-                                ]
-                            ]);
+                           
 
                             // Execute and handle response
-                            $response = curl_exec($ch);
-                            $error = curl_error($ch);
-                            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                            curl_close($ch);
+                            
                         } elseif ($this->input->post('project') == 2) {
                             $assigned = 16;
                             $regular_fields['assigned']  = 16;
@@ -707,39 +590,9 @@ class Forms extends ClientsController
                             $mediaLink = 'https://kautilya.n360.site/assets/pdf/Kautilya_Two20_Brochure.pdf';
 
                             // Build the URL with proper encoding
-                            $url = 'https://webhooks.whatapi.in/webhook/685e76df1d1fd0c920b52928?' . http_build_query([
-                                'number' => '91' . $phone,
-                                'message' => $message,
-                                'var1' => $var1,
-                                'var2' => $var2,
-                                'var3' => $var3,
-                                'var4' => $var4,
-                                'var5' => $var5,
-                                'var6' => $var6,
-                                'var7' => $var7,
-                                'var8' => $var8,
-                                'medialink' => $mediaLink
-                            ]);
+                            
 
-                            // Initialize cURL
-                            $ch = curl_init();
-                            curl_setopt_array($ch, [
-                                CURLOPT_URL => $url,
-                                CURLOPT_RETURNTRANSFER => true,
-                                CURLOPT_FOLLOWLOCATION => true,
-                                CURLOPT_MAXREDIRS => 10,
-                                CURLOPT_TIMEOUT => 30,
-                                CURLOPT_SSL_VERIFYPEER => true, // Set to false if you have SSL issues
-                                CURLOPT_HTTPHEADER => [
-                                    'Accept: application/json'
-                                ]
-                            ]);
-
-                            // Execute and handle response
-                            $response = curl_exec($ch);
-                            $error = curl_error($ch);
-                            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                            curl_close($ch);
+                            
                         } elseif ($this->input->post('project') == 3) {
                             $regular_fields['assigned']  = 20;
                             $assigned = 20;
@@ -755,40 +608,10 @@ class Forms extends ClientsController
                             $var8 = 'Call us at : +919825015121, +919879545223';
                             $mediaLink = 'https://kautilya.n360.site/assets/images/nilay.png';
 
-                            // Build the URL with proper encoding
-                            $url = 'https://webhooks.whatapi.in/webhook/685e76df1d1fd0c920b52928?' . http_build_query([
-                                'number' => '91' . $phone,
-                                'message' => $message,
-                                'var1' => $var1,
-                                'var2' => $var2,
-                                'var3' => $var3,
-                                'var4' => $var4,
-                                'var5' => $var5,
-                                'var6' => $var6,
-                                'var7' => $var7,
-                                'var8' => $var8,
-                                'medialink' => $mediaLink
-                            ]);
+                           
 
                             // Initialize cURL
-                            $ch = curl_init();
-                            curl_setopt_array($ch, [
-                                CURLOPT_URL => $url,
-                                CURLOPT_RETURNTRANSFER => true,
-                                CURLOPT_FOLLOWLOCATION => true,
-                                CURLOPT_MAXREDIRS => 10,
-                                CURLOPT_TIMEOUT => 30,
-                                CURLOPT_SSL_VERIFYPEER => true, // Set to false if you have SSL issues
-                                CURLOPT_HTTPHEADER => [
-                                    'Accept: application/json'
-                                ]
-                            ]);
-
-                            // Execute and handle response
-                            $response = curl_exec($ch);
-                            $error = curl_error($ch);
-                            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                            curl_close($ch);
+                           
                         }
                     }
 
