@@ -63,10 +63,10 @@
         <?php if (get_option('show_help_on_setup_menu') == 1 && is_admin()) {
             $totalSetupMenuItems++; ?>
         <li>
-            <a href="<?php echo hooks()->apply_filters('help_menu_item_link', 'https://www.nirmaan360.com/knowledge-base'); ?>"
+            <!-- <a href="<?php echo hooks()->apply_filters('help_menu_item_link', 'https://www.buildify360.com/knowledge-base'); ?>"
                 target="_blank">
                 <?php echo hooks()->apply_filters('help_menu_item_text', _l('setup_help')); ?>
-            </a>
+            </a> -->
         </li>
         <?php } ?>
     </ul>
