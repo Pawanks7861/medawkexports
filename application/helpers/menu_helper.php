@@ -329,26 +329,26 @@ function app_init_admin_sidebar_menu_items()
         ]);
     }
 
-    if (staff_can('view-timesheets', 'reports') || staff_can('view', 'reports')) {
-        $CI->app_menu->add_sidebar_menu_item('reports', [
-            'collapse' => true,
-            'name'     => _l('als_reports'),
-            'href'     => admin_url('reports'),
-            'icon'     => 'fa-regular fa-chart-bar',
-            'position' => 60,
-            'badge'    => [],
-        ]);
-    }
+    // if (staff_can('view-timesheets', 'reports') || staff_can('view', 'reports')) {
+    //     $CI->app_menu->add_sidebar_menu_item('reports', [
+    //         'collapse' => true,
+    //         'name'     => _l('als_reports'),
+    //         'href'     => admin_url('reports'),
+    //         'icon'     => 'fa-regular fa-chart-bar',
+    //         'position' => 60,
+    //         'badge'    => [],
+    //     ]);
+    // }
 
-    if (staff_can('view-timesheets', 'reports')) {
-        $CI->app_menu->add_sidebar_children_item('reports', [
-            'slug'     => 'timesheets-reports',
-            'name'     => _l('timesheets_overview'),
-            'href'     => admin_url('staff/timesheets?view=all'),
-            'position' => 25,
-            'badge'    => [],
-        ]);
-    }
+    // if (staff_can('view-timesheets', 'reports')) {
+    //     $CI->app_menu->add_sidebar_children_item('reports', [
+    //         'slug'     => 'timesheets-reports',
+    //         'name'     => _l('timesheets_overview'),
+    //         'href'     => admin_url('staff/timesheets?view=all'),
+    //         'position' => 25,
+    //         'badge'    => [],
+    //     ]);
+    // }
 
     // if (staff_can('view',  'reports')) {
     //     $CI->app_menu->add_sidebar_children_item('reports', [
