@@ -197,13 +197,13 @@ function app_init_admin_sidebar_menu_items()
         'badge'    => [],
     ]);
 
-    $CI->app_menu->add_sidebar_menu_item('progress_reports', [
-        'collapse' => true,
-        'name'     => 'Progress Reports',
-        'position' => 42,
-        'icon'     => 'fa-solid fa-receipt',
-        'badge'    => [],
-    ]);
+    // $CI->app_menu->add_sidebar_menu_item('progress_reports', [
+    //     'collapse' => true,
+    //     'name'     => 'Progress Reports',
+    //     'position' => 42,
+    //     'icon'     => 'fa-solid fa-receipt',
+    //     'badge'    => [],
+    // ]);
 
     $CI->app_menu->add_sidebar_children_item('progress_reports', [
         'slug'     => 'daily-progress-report',
