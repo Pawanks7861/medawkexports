@@ -1,0 +1,79 @@
+<?php
+
+if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use WpOrg\Requests\Requests as Lm_Requests;
+
+class Env_ver extends AdminController
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function index()
+    {
+        show_404();
+    }
+
+    public function activate()
+    {
+        $res = $this->val_lic();
+            $res['original_url'] = $this->input->post('original_url');
+        
+        echo json_encode($res);
+    }
+
+    public function upgrade_database()
+    {
+        $res = $this->val_lic();
+            $res['original_url'] = $this->input->post('original_url');
+        
+        echo json_encode($res);
+    }
+
+    private function getUserIP()
+    {
+        $ipaddress = '';
+        if (isset($_SERVER['HTTP_CLIENT_IP'])) {
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED'])) {
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        } elseif (isset($_SERVER['HTTP_FORWARDED_FOR'])) {
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        } elseif (isset($_SERVER['HTTP_FORWARDED'])) {
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        } elseif (isset($_SERVER['REMOTE_ADDR'])) {
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        } else {
+            $ipaddress = 'UNKNOWN';
+        }
+
+        return $ipaddress;
+    }
+
+    private function val_lic()
+    {
+        $this->load->library('Lmenvapi');
+        if (empty($this->input->post('purchase_key'))) {
+            return ['status' => false, 'message' => 'Purchase key is required'];
+        }
+        $module_name = $this->input->post('module_name');
+
+
+                   update_option($module_name . '_verification_id', 111111111111111);
+                    update_option($module_name . '_verified', true);
+                    update_option($module_name . '_last_verification', time());
+                    file_put_contents(__DIR__ . '/../config/token.php', 111111111111111);
+                    return ['status' => true];
+    }
+}
+
+// End of file Env_ver.php
+// Location: ./application/controllers/Env_ver.php

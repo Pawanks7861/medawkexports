@@ -1,0 +1,89 @@
+/* 
+.lead_manager .nav-tabs>li>a, .lead_manager .tab-content{
+
+     font-size: 14px; 
+}
+.lead_manager .top-lead-menu .nav-tabs {
+    border-top: 0;
+    margin-top: 10px;
+}
+.lead_manager .text-danger{
+	font-size: 13px;
+}
+@media (min-width: 768px){
+	.body.app.admin.lead_manager {
+		font-size: 21px;
+	}
+} */
+
+.side_menu_lm_menu_icon {
+    width: 133px;
+}
+.lm_apitable td{
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+
+ .message-input {
+     display: flex;
+     justify-content: space-between;
+     padding: 10px;
+     background-color: #ced5e566;
+     border-bottom-left-radius: 8px;
+     border-bottom-right-radius: 8px;
+     align-items: end;
+     position: relative;
+         z-index: 99;
+}
+
+ 
+ .inputmsg {
+     flex-grow: 1;
+     background-color: #fff;
+     border: none;
+     padding: 10px;
+     margin-right: 0px;
+       width: 100%;
+      box-sizing: border-box;
+      border-radius: 5px;
+      resize: none;
+      overflow: hidden; 
+      max-height: 15vh;
+ }
+
+
+  .inputmsg:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+
+ .message-input button {
+    background: #f4f4f5;
+    color: #51647c;
+    border: none;
+    padding: 7px 16px;
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-left: 5px;
+ }
+
+.message-input .wrap {
+    width: 100%;
+}
+
+
+
+.inputmsg::-webkit-scrollbar {
+  width: 6px;
+}
+.inputmsg::-webkit-scrollbar-track {
+  background: #f1f1f1;
+    border-radius: 30px
+}
+.inputmsg::-webkit-scrollbar-thumb {
+  background: #e3e8ee; 
+    border-radius: 30px
+}
