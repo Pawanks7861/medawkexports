@@ -204,7 +204,7 @@
                     </dd>
                     <dt class="lead-field-heading tw-font-medium tw-text-neutral-500"><?php echo _l('Call Time'); ?></dt>
                     <dd class="tw-text-neutral-900 tw-mt-1">
-                        <?php echo (isset($lead) && $lead->call_time != '' ?$lead->call_time : '-') ?>
+                        <?php echo (isset($lead) && $lead->call_time != '' ? $lead->call_time : '-') ?>
                     </dd>
 
                     <dt class="lead-field-heading tw-font-medium tw-text-neutral-500"><?php echo _l('Broker Contact Details'); ?></dt>
@@ -357,22 +357,27 @@
                 echo render_leads_source_select($sources, $selected, 'lead_add_edit_source');
                 ?>
             </div>
-            <div class="col-md-4">
-                <?php
-                $assigned_attrs = [];
-                $selected       = (isset($lead) ? $lead->assigned : get_staff_user_id());
-                if (
-                    isset($lead)
-                    && $lead->assigned == get_staff_user_id()
-                    && $lead->addedfrom != get_staff_user_id()
-                    && !is_admin($lead->assigned)
-                    && staff_cant('view', 'leads')
-                ) {
-                    $assigned_attrs['disabled'] = true;
-                }
-                echo render_select('assigned', $members, ['staffid', ['firstname', 'lastname']], 'lead_add_edit_assigned', $selected, $assigned_attrs);
-                ?>
-            </div>
+            <?php
+            if (is_admin()) { ?>
+                <div class="col-md-4">
+                    <?php
+                    $assigned_attrs = [];
+                    $selected       = (isset($lead) ? $lead->assigned : get_staff_user_id());
+                    if (
+                        isset($lead)
+                        && $lead->assigned == get_staff_user_id()
+                        && $lead->addedfrom != get_staff_user_id()
+                        && !is_admin($lead->assigned)
+                        && staff_cant('view', 'leads')
+                    ) {
+                        $assigned_attrs['disabled'] = true;
+                    }
+                    echo render_select('assigned', $members, ['staffid', ['firstname', 'lastname']], 'lead_add_edit_assigned', $selected, $assigned_attrs);
+                    ?>
+                </div>
+            <?php }
+            ?>
+
 
             <div class="clearfix"></div>
             <hr class="mtop5 mbot10" />
@@ -773,8 +778,8 @@
                         <?php } ?> -->
 
                         <!-- <div class="checkbox-inline checkbox checkbox-primary<?php if (isset($lead)) {
-                                                                                    echo ' hide';
-                                                                                } ?><?php if (isset($lead) && (is_lead_creator($lead->id) || staff_can('edit', 'leads'))) {
+                                                                                        echo ' hide';
+                                                                                    } ?><?php if (isset($lead) && (is_lead_creator($lead->id) || staff_can('edit', 'leads'))) {
                                                                                         echo ' lead-edit';
                                                                                     } ?>">
                             <input type="checkbox" name="is_public" <?php if (isset($lead) && $lead->is_public == 1) {
@@ -803,7 +808,7 @@
                                 <textarea id="lead_note_description" name="lead_note_description" class="form-control" rows="4"></textarea>
                             </div>
                             <div class="lead-select-date-contacted ">
-                                <?php 
+                                <?php
                                 $cruntDate = date('Y-m-d H:i');
                                 echo render_datetime_input('custom_contact_date', 'lead_add_edit_datecontacted', $cruntDate, ['data-date-end-date' => date('Y-m-d')]); ?>
                             </div>
