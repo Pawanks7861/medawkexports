@@ -125,15 +125,17 @@ $module_name = 'leads'; ?>
                                         echo render_select('project[]', $projects, array('id', 'name'), '', $project_type_filter_val, array('data-width' => '100%', 'data-none-selected-text' => _l('project'), 'multiple' => true, 'data-actions-box' => true), array(), 'no-mbot', '', false);
                                         ?>
                                     </div>
-                                    <div class="col-md-2 form-group">
+                                    <?php if (is_admin()) { ?>
+                                        <div class="col-md-2 form-group">
 
-                                        <?php
-                                        $assigned_type_filter = get_module_filter($module_name, 'assigned');
-                                        $assigned_type_filter_val = !empty($assigned_type_filter) ? explode(",", $assigned_type_filter->filter_value) : '';
-                                        echo render_select('assigned[]', $staff, array('staffid', 'firstname'), '', $assigned_type_filter_val, array('data-width' => '100%', 'data-none-selected-text' => _l('Assigned'), 'multiple' => true, 'data-actions-box' => true), array(), 'no-mbot', '', false);
-                                        ?>
+                                            <?php
+                                            $assigned_type_filter = get_module_filter($module_name, 'assigned');
+                                            $assigned_type_filter_val = !empty($assigned_type_filter) ? explode(",", $assigned_type_filter->filter_value) : '';
+                                            echo render_select('assigned[]', $staff, array('staffid', 'firstname'), '', $assigned_type_filter_val, array('data-width' => '100%', 'data-none-selected-text' => _l('Assigned'), 'multiple' => true, 'data-actions-box' => true), array(), 'no-mbot', '', false);
+                                            ?>
 
-                                    </div>
+                                        </div>
+                                    <?php  } ?>
                                     <div class="col-md-2 form-group">
                                         <?php
                                         $status_type_filter = get_module_filter($module_name, 'status');
