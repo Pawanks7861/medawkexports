@@ -118,14 +118,15 @@ $module_name = 'leads'; ?>
                                 </div>
                             <?php } else { ?>
                                 <div class="row all_ot_filters">
-                                    <div class="col-md-2 form-group">
-                                        <?php
-                                        $project_type_filter = get_module_filter($module_name, 'project');
-                                        $project_type_filter_val = !empty($project_type_filter) ? explode(",", $project_type_filter->filter_value) : '';
-                                        echo render_select('project[]', $projects, array('id', 'name'), '', $project_type_filter_val, array('data-width' => '100%', 'data-none-selected-text' => _l('project'), 'multiple' => true, 'data-actions-box' => true), array(), 'no-mbot', '', false);
-                                        ?>
-                                    </div>
                                     <?php if (is_admin()) { ?>
+                                        <div class="col-md-2 form-group">
+                                            <?php
+                                            $project_type_filter = get_module_filter($module_name, 'project');
+                                            $project_type_filter_val = !empty($project_type_filter) ? explode(",", $project_type_filter->filter_value) : '';
+                                            echo render_select('project[]', $projects, array('id', 'name'), '', $project_type_filter_val, array('data-width' => '100%', 'data-none-selected-text' => _l('project'), 'multiple' => true, 'data-actions-box' => true), array(), 'no-mbot', '', false);
+                                            ?>
+                                        </div>
+
                                         <div class="col-md-2 form-group">
 
                                             <?php
