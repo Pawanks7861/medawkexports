@@ -11,7 +11,7 @@ $month_filter_name = 'month';
 $duplicate_filter_name = 'duplicate';
 // Get CI instance
 $CI = &get_instance();
-$CI->load->model('gdpr_model'); 
+$CI->load->model('gdpr_model');
 $CI->load->model('leads_model');
 $CI->load->model('staff_model');
 
@@ -26,7 +26,7 @@ $custom_fields = get_custom_fields('leads', ['show_on_table' => 1]);
 // Base columns
 $aColumns = [
     0, // checkbox placeholder
-    db_prefix() . 'leads.id as id', 
+    db_prefix() . 'leads.id as id',
     db_prefix() . 'leads.name as name',
     db_prefix() . 'leads.phonenumber as phonenumber',
     db_prefix() . 'leads.alt_phonenumber as alt_phonenumber',
@@ -93,7 +93,7 @@ if ($CI->input->post('month') && count($CI->input->post('month')) > 0) {
     $where[] = 'AND MONTH(' . db_prefix() . 'leads.dateadded) IN (' . implode(',', $CI->input->post('month')) . ')';
 }
 
-if($CI->input->post('duplicate') && count($CI->input->post('duplicate')) > 0){
+if ($CI->input->post('duplicate') && count($CI->input->post('duplicate')) > 0) {
     $where[] = 'AND ' . db_prefix() . 'leads.duplicate IN (' . implode(',', $CI->input->post('duplicate')) . ')';
 }
 
@@ -115,6 +115,19 @@ update_module_filter($module_name, $month_filter_name, $month_filter_name_value)
 
 $duplicate_filter_name_value = !empty($this->ci->input->post('duplicate')) ? implode(',', $this->ci->input->post('duplicate')) : NULL;
 update_module_filter($module_name, $duplicate_filter_name, $duplicate_filter_name_value);
+$staffid = get_staff_user_id();
+
+$get_assgined_projects = get_assgined_projects($staffid);
+
+$project_ids = !empty($get_assgined_projects) ? array_column($get_assgined_projects, 'team_manage_id') : [];
+
+
+$project_condition = '';
+if (!empty($project_ids)) {
+    $project_condition = ' OR projects IN (' . implode(',', $project_ids) . ')';
+}
+
+array_push($where, 'AND (assigned = ' . get_staff_user_id() . ' OR addedfrom = ' . get_staff_user_id() . ' OR is_public = 1 ' . $project_condition . ')');
 
 $result = data_tables_init(
     $aColumns,
@@ -158,7 +171,7 @@ foreach ($rResult as $aRow) {
         ? e($aRow['name'])
         : 'No Name';
     $nameRow  = '<a href="' . admin_url('leads/index/' . $aRow['id'] . '?edit=true')
-            . '" onclick="init_lead(' . $aRow['id'] . ', true);return false;">' . $name . '</a><div class="row-options">'
+        . '" onclick="init_lead(' . $aRow['id'] . ', true);return false;">' . $name . '</a><div class="row-options">'
         . '<a ' . $href . '>' . _l('view') . '</a>';
     $locked   = ($aRow['is_converted'] > 0
         && !is_admin()
