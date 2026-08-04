@@ -132,7 +132,20 @@ class Leads extends AdminController
         $reminder_data         = '';
         $data['lead_locked']   = false;
         $data['openEdit']      = $this->input->get('edit') ? true : false;
-        $data['members']       = $this->staff_model->get('', ['is_not_staff' => 0, 'active' => 1]);
+        if (is_admin()) {
+            // Admin: fetch all active staff
+            $data['members'] = $this->leads_model->get_staff_list('', [
+                'is_not_staff' => 0,
+                'active'       => 1
+            ]);
+        } else {
+            $staff_id = get_staff_user_id(); 
+            // Non-admin: fetch only logged-in user
+            $data['members'] = $this->leads_model->get_staff_list($staff_id, [
+                'is_not_staff' => 0,
+                'active'       => 1
+            ]);
+        }
         $data['status_id']     = $this->input->get('status_id') ? $this->input->get('status_id') : get_option('leads_default_status');
         $data['base_currency'] = get_base_currency();
 
@@ -1432,7 +1445,7 @@ class Leads extends AdminController
         header('Content-Disposition: attachment; filename="Leads.csv"');
 
         // Open output stream
-        $output = fopen('php://output', 'w'); 
+        $output = fopen('php://output', 'w');
         $leads_data = $this->leads_model->get_leads_pdf_data();
         // CSV Headers (same as PDF table columns)
         $headers = [

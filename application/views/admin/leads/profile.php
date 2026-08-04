@@ -357,26 +357,23 @@
                 echo render_leads_source_select($sources, $selected, 'lead_add_edit_source');
                 ?>
             </div>
-            <?php
-            if (is_admin()) { ?>
-                <div class="col-md-4">
-                    <?php
-                    $assigned_attrs = [];
-                    $selected       = (isset($lead) ? $lead->assigned : get_staff_user_id());
-                    if (
-                        isset($lead)
-                        && $lead->assigned == get_staff_user_id()
-                        && $lead->addedfrom != get_staff_user_id()
-                        && !is_admin($lead->assigned)
-                        && staff_cant('view', 'leads')
-                    ) {
-                        $assigned_attrs['disabled'] = true;
-                    }
-                    echo render_select('assigned', $members, ['staffid', ['firstname', 'lastname']], 'lead_add_edit_assigned', $selected, $assigned_attrs);
-                    ?>
-                </div>
-            <?php }
-            ?>
+
+            <div class="col-md-4">
+                <?php
+                $assigned_attrs = [];
+                $selected       = (isset($lead) ? $lead->assigned : get_staff_user_id());
+                if (
+                    isset($lead)
+                    && $lead->assigned == get_staff_user_id()
+                    && $lead->addedfrom != get_staff_user_id()
+                    && !is_admin($lead->assigned)
+                    && staff_cant('view', 'leads')
+                ) {
+                    $assigned_attrs['disabled'] = true;
+                }
+                echo render_select('assigned', $members, ['staffid', ['firstname', 'lastname']], 'lead_add_edit_assigned', $selected, $assigned_attrs);
+                ?>
+            </div>
 
 
             <div class="clearfix"></div>
@@ -780,8 +777,8 @@
                         <!-- <div class="checkbox-inline checkbox checkbox-primary<?php if (isset($lead)) {
                                                                                         echo ' hide';
                                                                                     } ?><?php if (isset($lead) && (is_lead_creator($lead->id) || staff_can('edit', 'leads'))) {
-                                                                                        echo ' lead-edit';
-                                                                                    } ?>">
+                                                                                            echo ' lead-edit';
+                                                                                        } ?>">
                             <input type="checkbox" name="is_public" <?php if (isset($lead) && $lead->is_public == 1) {
                                                                         echo 'checked';
                                                                     } ?> id="lead_public">

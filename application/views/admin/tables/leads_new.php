@@ -120,14 +120,17 @@ $staffid = get_staff_user_id();
 $get_assgined_projects = get_assgined_projects($staffid);
 
 $project_ids = !empty($get_assgined_projects) ? array_column($get_assgined_projects, 'team_manage_id') : [];
+if (is_admin()) {
+} else {
+    $project_condition = '';
+    if (!empty($project_ids)) {
+        $project_condition = ' OR projects IN (' . implode(',', $project_ids) . ')';
+    }
 
-
-$project_condition = '';
-if (!empty($project_ids)) {
-    $project_condition = ' OR projects IN (' . implode(',', $project_ids) . ')';
+    array_push($where, 'AND (assigned = ' . get_staff_user_id() . ' OR addedfrom = ' . get_staff_user_id() . ' OR is_public = 1 ' . $project_condition . ')');
 }
 
-array_push($where, 'AND (assigned = ' . get_staff_user_id() . ' OR addedfrom = ' . get_staff_user_id() . ' OR is_public = 1 ' . $project_condition . ')');
+
 
 $result = data_tables_init(
     $aColumns,
