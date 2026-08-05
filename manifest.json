@@ -11,7 +11,7 @@
 	"theme_color": "#238ee0",
 	"icons": [
 		{
-			"src": "media/icons/pwa_logo.png",
+			"src": "media/icons/webapplogo.jpeg",
 			"sizes": "48x48 72x72 96x96 128x128 192x192 256x256 512x512",
 			"type": "image/png"
 		}
