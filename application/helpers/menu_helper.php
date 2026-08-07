@@ -152,7 +152,7 @@ function app_init_admin_sidebar_menu_items()
     ]);
 
     $CI->app_menu->add_sidebar_menu_item('tasks', [
-        'name'     => _l('als_tasks'),
+        'name'     => _l('Follow Up'),
         'href'     => admin_url('tasks'),
         'icon'     => 'fa-regular fa-circle-check',
         'position' => 35,

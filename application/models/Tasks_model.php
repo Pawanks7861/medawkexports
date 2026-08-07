@@ -71,7 +71,7 @@ class Tasks_model extends App_Model
                 'name'           => _l('task_status_5'),
                 'order'          => 100,
                 'filter_default' => false,
-            ],
+            ], 
         ]);
 
         usort($statuses, function ($a, $b) {
@@ -789,6 +789,14 @@ class Tasks_model extends App_Model
         $this->db->update(db_prefix() . 'tasks', $data);
         if ($this->db->affected_rows() > 0) {
             $affectedRows++;
+
+            $this->mark_as(5, $id);
+
+            $get_lead_assignees = get_lead_assignees_by_lead_id($data['rel_id']);
+            $data['assignees'] = $get_lead_assignees;
+            $data['startdate'] = $data['duedate'];
+            $data['duedate'] = $data['duedate'];
+            $this->add($data);
         }
 
         if ($affectedRows > 0) {
@@ -1635,25 +1643,25 @@ class Tasks_model extends App_Model
                             $this->db->where('status', static::STATUS_COMPLETE);
                             $completed_tasks = $this->db->count_all_results(db_prefix() . 'tasks');
 
-                            if ($completed_tasks < 5) {
-                                // Create new task
-                                $taskData = [
-                                    'name' => $task->name . ' (Follow-up ' . ($completed_tasks + 1) . ')',
-                                    'is_public' => 1,
-                                    'startdate' => date('Y-m-d', strtotime('+3 days')),
-                                    'duedate' => date('Y-m-d', strtotime('+3 days')),
-                                    'priority' => 3,
-                                    'rel_type' => 'lead',
-                                    'rel_id' => $task->rel_id,
-                                    'assignees' => $assigned,
-                                ];
+                            // if ($completed_tasks < 5) {
+                            //     // Create new task
+                            //     $taskData = [
+                            //         'name' => $task->name . ' (Follow-up ' . ($completed_tasks + 1) . ')',
+                            //         'is_public' => 1,
+                            //         'startdate' => date('Y-m-d', strtotime('+3 days')),
+                            //         'duedate' => date('Y-m-d', strtotime('+3 days')),
+                            //         'priority' => 3,
+                            //         'rel_type' => 'lead',
+                            //         'rel_id' => $task->rel_id,
+                            //         'assignees' => $assigned,
+                            //     ];
 
-                                $new_task_id = $this->tasks_model->add($taskData);
+                            //     $new_task_id = $this->tasks_model->add($taskData);
 
-                                if ($new_task_id) {
-                                    log_activity('New Follow-up Task Created [ID: ' . $new_task_id . '] for Lead [ID: ' . $task->rel_id . ']');
-                                }
-                            }
+                            //     if ($new_task_id) {
+                            //         log_activity('New Follow-up Task Created [ID: ' . $new_task_id . '] for Lead [ID: ' . $task->rel_id . ']');
+                            //     }
+                            // }
                         }
                     }
                 }

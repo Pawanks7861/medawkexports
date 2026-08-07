@@ -10,7 +10,7 @@ $module_name = 'tasks'; ?>
                                                         echo "'" . admin_url('tasks/task?rel_id=' . $this->input->get('project_id') . '&rel_type=project') . "'";
                                                     } ?>); return false;" class="btn btn-primary pull-left new">
                         <i class="fa-regular fa-plus tw-mr-1"></i>
-                        <?php echo _l('new_task'); ?>
+                        <?php echo _l('New Follow Up'); ?>
                     </a>
                 <?php } ?>
                 <a
@@ -32,7 +32,7 @@ $module_name = 'tasks'; ?>
                 <?php } else { ?>
 
                     <a href="<?php echo admin_url('tasks/detailed_overview'); ?>"
-                        class="btn btn-success pull-right mright5"><?php echo _l('detailed_overview'); ?></a>
+                        class="btn btn-success pull-right mright5"><?php echo _l('Follow Up Overview'); ?></a>
                 <?php } ?>
             </div>
         </div>

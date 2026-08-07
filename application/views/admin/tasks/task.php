@@ -186,7 +186,7 @@
                             </div>
                             <div class="col-md-6">
                                 <?php $value = (isset($task) ? _d($task->duedate) : ''); ?>
-                                <?php echo render_date_input('duedate', 'task_add_edit_due_date', $value, $project_end_date_attrs); ?>
+                                <?php echo render_date_input('duedate', 'Next Follow Up Date', $value, $project_end_date_attrs); ?>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">

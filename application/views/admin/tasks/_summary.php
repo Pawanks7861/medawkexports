@@ -7,7 +7,7 @@
     </svg>
 
     <span>
-        <?php echo _l('tasks_summary'); ?>
+        <?php echo _l('Follow Up Summary'); ?>
     </span>
 </h4>
 <div class="row">

@@ -387,13 +387,13 @@ class Tasks extends AdminController
         $data['milestones']         = [];
         $data['checklistTemplates'] = $this->tasks_model->get_checklist_templates();
         if ($id == '') {
-            $title = _l('add_new', _l('task_lowercase'));
+            $title = _l('New Follow Up');
         } else {
             $data['task'] = $this->tasks_model->get($id);
             if ($data['task']->rel_type == 'project') {
                 $data['milestones'] = $this->projects_model->get_milestones($data['task']->rel_id);
             }
-            $title = _l('edit', _l('task_lowercase')) . ' ' . $data['task']->name;
+            $title = _l('Edit Follow Up') . ' ' . $data['task']->name;
         }
 
         $data['project_end_date_attrs'] = [];

@@ -660,3 +660,12 @@ function get_lead_status_by_lead_id($lead_id) {
 
     return $outputStatus;
 }
+
+function get_lead_assignees_by_lead_id($lead_id){
+    $CI = &get_instance();
+    $CI->db->select('assigned');
+    $CI->db->where('id', $lead_id);
+    $assignees = $CI->db->get(db_prefix() . 'leads')->row();
+
+    return $assignees;
+}
