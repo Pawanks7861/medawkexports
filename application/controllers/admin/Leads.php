@@ -53,6 +53,17 @@ class Leads extends AdminController
             $this->session->userdata('leads_kanban_view') == 'true';
         $admin = is_admin() ? 1 : 0;
         $data['isadmin'] = $admin;
+
+        $is_admin = is_admin();
+
+        if ($is_admin) {
+            // Admin sees all leads
+            $data['lead_count_with_status'] = $this->leads_model->get_lead_count_with_status();
+        } else {
+            // Staff sees only their assigned leads
+            $staff_id = get_staff_user_id();
+            $data['lead_count_with_status'] = $this->leads_model->get_lead_count_with_status($staff_id);
+        }
         $this->load->view('admin/leads/manage_leads', $data);
     }
 
@@ -139,7 +150,7 @@ class Leads extends AdminController
                 'active'       => 1
             ]);
         } else {
-            $staff_id = get_staff_user_id(); 
+            $staff_id = get_staff_user_id();
             // Non-admin: fetch only logged-in user
             $data['members'] = $this->leads_model->get_staff_list($staff_id, [
                 'is_not_staff' => 0,

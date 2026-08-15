@@ -11,19 +11,28 @@
     </span>
 </h4>
 <div class="row">
-    <?php foreach (tasks_summary_data((isset($rel_id) ? $rel_id : null), (isset($rel_type) ? $rel_type : null)) as $summary) { ?>
+    <?php
+    $is_admin = is_admin(); // Check if logged-in user is admin
+
+    foreach (tasks_summary_data((isset($rel_id) ? $rel_id : null), (isset($rel_type) ? $rel_type : null)) as $summary) {
+        // If staff (non-admin), use total_my_tasks as the main count
+        $main_count = $is_admin ? $summary['total_tasks'] : $summary['total_my_tasks'];
+        $additional_count = $is_admin ? $summary['total_my_tasks'] : null;
+    ?>
         <div class="col-md-2 col-xs-6 md:tw-border-r md:tw-border-solid md:tw-border-neutral-300 last:tw-border-r-0">
             <div class="tw-flex tw-items-center">
                 <span class="tw-font-semibold tw-mr-3 rtl:tw-ml-3 tw-text-lg">
-                    <?php echo e($summary['total_tasks']); ?>
+                    <?php echo e($main_count); ?>
                 </span>
                 <span style="color:<?php echo e($summary['color']); ?>">
                     <?php echo e($summary['name']); ?>
                 </span>
             </div>
-            <p class="tw-text-sm tw-mb-0 tw-text-neutral-600">
-                <?php echo _l('tasks_view_assigned_to_user'); ?>: <?php echo e($summary['total_my_tasks']); ?>
-            </p>
+            <?php if ($is_admin): ?>
+                <p class="tw-text-sm tw-mb-0 tw-text-neutral-600">
+                    <?php echo _l('tasks_view_assigned_to_user'); ?>: <?php echo e($summary['total_my_tasks']); ?>
+                </p>
+            <?php endif; ?>
         </div>
     <?php } ?>
 

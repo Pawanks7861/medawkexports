@@ -15,7 +15,7 @@ $module_name = 'leads'; ?>
     }
     
     #leads_wrapper .table-responsive {
-        max-height: 90vh;
+        max-height: 70vh;
         overflow-y: auto;
     }
 
@@ -275,6 +275,7 @@ $module_name = 'leads'; ?>
                                             <!-- /.modal-dialog -->
                                         </div>
                                         <!-- /.modal -->
+                                          <?php $this->load->view('admin/leads/_summary', ['table' => '.table-leads']); ?>
                                         <div class="btn-group show_hide_columns" id="show_hide_columns">
                                             <!-- Settings Icon -->
                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 4px 7px;">
@@ -331,6 +332,7 @@ $module_name = 'leads'; ?>
                                                 </a>
                                             </div>
                                         </div>
+                                        
                                         <?php
 
                                         $table_data  = [];

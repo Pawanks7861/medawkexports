@@ -1,6 +1,18 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <?php init_head();
 $module_name = 'tasks'; ?>
+<style>
+    #tasks_wrapper .table-responsive {
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+
+    #tasks_wrapper .table-responsive thead th {
+        position: sticky;
+        top: 0;
+        background: #fff;
+    }
+</style>
 <div id="wrapper">
     <div class="content">
         <div class="row _buttons tw-mb-2 sm:tw-mb-4">
@@ -29,7 +41,7 @@ $module_name = 'tasks'; ?>
                     <div data-toggle="tooltip" data-placement="top" data-title="<?php echo _l('search_by_tags'); ?>">
                         <?php echo render_input('search', '', '', 'search', ['data-name' => 'search', 'onkeyup' => 'tasks_kanban();', 'placeholder' => _l('search_tasks')], [], 'no-margin') ?>
                     </div>
-                <?php } else {
+                    <?php } else {
                     if (is_admin()) { ?>
                         <a href="<?php echo admin_url('tasks/detailed_overview'); ?>"
                             class="btn btn-success pull-right mright5"><?php echo _l('Follow Up Overview'); ?></a>
@@ -130,15 +142,15 @@ $module_name = 'tasks'; ?>
                             ];
                             $period_type_filter = get_module_filter($module_name, 'period');
 
-                            if(!empty($period_type_filter) && !empty($period_type_filter->filter_value)){
+                            if (!empty($period_type_filter) && !empty($period_type_filter->filter_value)) {
                                 $period_type_filter_val = !empty($period_type_filter) ? explode(",", $period_type_filter->filter_value) : '';
-                            }else{
+                            } else {
                                 $period_type_filter_val = ['today'];
                             }
-                            
 
 
-                            
+
+
 
 
                             echo render_select('period[]', $period, array('id', 'name'), '', $period_type_filter_val, array('data-width' => '100%', 'data-none-selected-text' => _l('Period'), 'multiple' => true, 'data-actions-box' => true), array(), 'no-mbot', '', false);

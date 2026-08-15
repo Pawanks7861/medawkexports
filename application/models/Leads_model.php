@@ -141,7 +141,7 @@ class Leads_model extends App_Model
 
         if ($insert_id) {
 
-            
+
             if (isset($data['assigned'])) {
                 $taskData = [
                     'name' => $data['name'],
@@ -1467,12 +1467,51 @@ class Leads_model extends App_Model
             $this->db->where('staffid', $id);
             $staff = $this->db->get(db_prefix() . 'staff')->result_array();
 
-            
+
 
             return $staff;
         }
         $this->db->order_by('firstname', 'desc');
 
         return $this->db->get(db_prefix() . 'staff')->result_array();
+    }
+
+    public function get_lead_count_with_status($staff_id = null)
+    {
+        $this->db->select('status, COUNT(*) as count');
+        $this->db->from(db_prefix() . 'leads');
+
+        // If staff_id is provided (non-admin), filter by assigned staff
+        if ($staff_id !== null) {
+            $this->db->where('assigned', $staff_id);
+        }
+
+        $this->db->group_by('status');
+        $query = $this->db->get();
+        $results = $query->result_array();
+
+        // Get all statuses with their colors and names
+        $statuses = $this->get_status();
+
+        // Create an array with status data and counts
+        $lead_data = [];
+        foreach ($statuses as $status) {
+            $count = 0;
+            foreach ($results as $result) {
+                if ($result['status'] == $status['id']) {
+                    $count = $result['count'];
+                    break;
+                }
+            }
+            $lead_data[] = [
+                'status_id' => $status['id'],
+                'status_name' => $status['name'],
+                'status_color' => $status['color'],
+                'count' => $count,
+                'total_my_leads' => $count // For staff view
+            ];
+        }
+
+        return $lead_data;
     }
 }
