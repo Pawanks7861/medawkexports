@@ -15,7 +15,7 @@
                     <label for="cf_tasks"><?php echo _l('tasks'); ?></label>
                 </div>
             <?php } ?>
-            <?php if(get_option('show_projects_on_calendar') == 1 && is_admin()){ ?>
+            <?php if(get_option('show_projects_on_calendar') == 1){ ?>
                 <div class="checkbox">
                     <input type="checkbox" value="1" name="projects" id="cf_projects"<?php if($this->input->post('projects')){echo ' checked';} ?>>
                     <label for="cf_projects"><?php echo _l('projects'); ?></label>

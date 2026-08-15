@@ -348,10 +348,10 @@ class Utilities_model extends App_Model
             foreach ($available_reminders as $key) {
                 if (get_option('show_' . $key . '_reminders_on_calendar') == 1 && !$ff || $ff && array_key_exists($key . '_reminders', $filters)) {
                     $this->db->select('date,description,firstname,lastname,creator,staff,rel_id')
-                    ->from(db_prefix() . 'reminders')
-                    ->where('(date BETWEEN "' . $start . '" AND "' . $end . '")')
-                    ->where('rel_type', $key)
-                    ->join(db_prefix() . 'staff', db_prefix() . 'staff.staffid = ' . db_prefix() . 'reminders.staff');
+                        ->from(db_prefix() . 'reminders')
+                        ->where('(date BETWEEN "' . $start . '" AND "' . $end . '")')
+                        ->where('rel_type', $key)
+                        ->join(db_prefix() . 'staff', db_prefix() . 'staff.staffid = ' . db_prefix() . 'reminders.staff');
                     if ($hideNotifiedReminders == '1') {
                         $this->db->where('isnotified', 0);
                     }
@@ -450,7 +450,8 @@ class Utilities_model extends App_Model
             }
         }
         //calendar_project
-        if (get_option('show_projects_on_calendar') == 1 && !$ff || $ff && array_key_exists('projects', $filters)) {
+        
+        if (is_admin() && get_option('show_projects_on_calendar') == 1 && !$ff || $ff && array_key_exists('projects', $filters)) {
             $this->load->model('projects_model');
             $this->db->select('name as title,id,clientid, CASE WHEN deadline IS NULL THEN start_date ELSE deadline END as date,' . get_sql_select_client_company(), false);
 
@@ -492,8 +493,8 @@ class Utilities_model extends App_Model
                 }
 
                 $_project['date'] = $project['date'];
-
                 array_push($data, $_project);
+                
             }
         }
         if (!$client_data && !$ff || (!$client_data && $ff && array_key_exists('events', $filters))) {
