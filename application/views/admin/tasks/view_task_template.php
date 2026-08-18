@@ -58,7 +58,9 @@
           echo '<div class="task-single-related-wrapper">';
           $task_rel_data  = get_relation_data($task->rel_type, $task->rel_id);
           $task_rel_value = get_relation_values($task_rel_data, $task->rel_type);
-          echo '<h4 class="bold font-medium mbot15 tw-mt-0">' . _l('task_single_related') . ': <a href="' . e($task_rel_value['link']) . '" target="_blank">' . e($task_rel_value['name']) . '</a>';
+          $get_lead_number = get_lead_number($task->rel_id);
+          $get_lead_number = get_lead_number($task->rel_id);
+          echo '<h4 class="bold font-medium mbot15 tw-mt-0">' . _l('task_single_related') . ': <a href="' . e($task_rel_value['link']) . '" target="_blank">' . e($task_rel_value['name']) . '</a> (' . $get_lead_number . ') ';
           if ($task->rel_type == 'project' && $task->milestone != 0) {
               echo '<div class="mtop5 mbot20 font-normal">' . _l('task_milestone') . ': ';
               $milestones = get_project_milestones($task->rel_id);

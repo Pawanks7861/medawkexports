@@ -65,7 +65,7 @@ $join = [
 if (!is_admin()) {
     // Get current staff ID
     $current_staff_id = get_staff_user_id();
-    
+
     // Add condition to only show tasks assigned to this staff member
     // This includes tasks where the staff is either assigned or is the creator
     $where[] = 'AND (
@@ -297,14 +297,7 @@ foreach ($rResult as $aRow) {
     $row[] = $outputName;
 
     // Description/comments
-    $get_task_comments = get_task_comments($aRow['id']);
-    $comments_text = '';
-    if (!empty($get_task_comments)) {
-        foreach ($get_task_comments as $comment) {
-            $comments_text .= strip_tags($comment['content'], '<br><strong>') . "<br>";
-        }
-    }
-    $row[] = $comments_text;
+    $row[] = strip_tags($aRow['description'], '<br><strong>');
 
     // Lead status (if applicable)
     $lead_status = '';

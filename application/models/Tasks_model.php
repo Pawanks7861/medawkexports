@@ -71,7 +71,7 @@ class Tasks_model extends App_Model
                 'name'           => _l('task_status_5'),
                 'order'          => 100,
                 'filter_default' => false,
-            ], 
+            ],
         ]);
 
         usort($statuses, function ($a, $b) {
@@ -422,12 +422,29 @@ class Tasks_model extends App_Model
     public function add($data, $clientRequest = false)
     {
         $fromTicketId = null;
-
+        unset($data['lead_status']);
         if (isset($data['ticket_to_task'])) {
             $fromTicketId = $data['ticket_to_task'];
             unset($data['ticket_to_task']);
         }
+        if (isset($data['duedate']) && isset($data['rel_id']) && isset($data['rel_type'])) {
+            $today = date('Y-m-d');
+            $dueDate = to_sql_date($data['duedate']);
 
+            // Check if the due date is today
+            if ($dueDate == $today) {
+                // Check if there's already a task with the same due date and related to the same entity
+                $this->db->where('rel_id', $data['rel_id']);
+                $this->db->where('rel_type', $data['rel_type']);
+                $this->db->where('duedate', $today);
+                $existingTask = $this->db->get(db_prefix() . 'tasks')->row();
+                if ($existingTask) {
+                    // Task already exists for today, return the existing task ID or false
+                    log_activity('Task creation prevented: Task already exists for today [ID:' . $existingTask->id . ', Due Date: ' . $today . ']');
+                    return $existingTask->id; // or return false if you want to prevent creation
+                }
+            }
+        }
         $data['startdate']             = to_sql_date($data['startdate']);
         $data['duedate']               = to_sql_date($data['duedate']);
         $data['dateadded']             = date('Y-m-d H:i:s');
@@ -673,6 +690,8 @@ class Tasks_model extends App_Model
     public function update($data, $id, $clientRequest = false)
     {
         $affectedRows      = 0;
+        $lead_status = $data['lead_status'] ?? null;
+        unset($data['lead_status']);
         $data['startdate'] = to_sql_date($data['startdate']);
         $data['duedate']   = to_sql_date($data['duedate']);
 
@@ -787,6 +806,14 @@ class Tasks_model extends App_Model
 
         $this->db->where('id', $id);
         $this->db->update(db_prefix() . 'tasks', $data);
+        
+        if ($lead_status) {
+            $lead_data = [];
+            $lead_data['status'] = $lead_status;
+            $lead_data['leadid'] = $data['rel_id'];
+            $this->load->model('leads_model');
+            $this->leads_model->update_lead_status($lead_data);
+        }
         if ($this->db->affected_rows() > 0) {
             $affectedRows++;
 

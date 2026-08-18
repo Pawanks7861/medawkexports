@@ -410,6 +410,7 @@ class Tasks extends AdminController
         $data['members'] = $this->staff_model->get();
         $data['id']      = $id;
         $data['title']   = $title;
+        $data['lead_status'] = $this->leads_model->get_status();   
         $this->load->view('admin/tasks/task', $data);
     }
 

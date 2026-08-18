@@ -151,18 +151,8 @@ return App_table::find('tasks')
             $outputName .= '</div>';
 
             $row[] = $outputName;
-            // $row[] = strip_tags($aRow['description'], '<br><strong>');
-            $get_task_comments = get_task_comments($aRow['id']);
-
-            $comments_text = ''; // Initialize an empty string
-
-            if (!empty($get_task_comments)) {
-                foreach ($get_task_comments as $comment) {
-                    $comments_text .= strip_tags($comment['content'], '<br><strong>') . "<br>"; // Append each comment with a line break
-                }
-            }
-
-            $row[] = $comments_text; // Store all formatted comments in the row array
+            $row[] = strip_tags($aRow['description'], '<br><strong>');
+            
             $row[] = get_lead_status_by_lead_id($aRow['rel_id']);
 
             $canChangeStatus = ($aRow['current_user_is_creator'] != '0' || $aRow['current_user_is_assigned'] || staff_can('edit',  'tasks'));

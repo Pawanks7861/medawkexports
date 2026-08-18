@@ -1164,3 +1164,25 @@ function get_customer_count() {
     
     return $result ? (int)$result->customer_count : 0;
 }
+
+function get_lead_number($lead_id) {
+    $CI = &get_instance();
+    $CI->db->select('phonenumber');
+    $CI->db->from('tblleads');
+    $CI->db->where('id', $lead_id);
+    $query = $CI->db->get();
+    $result = $query->row();
+    
+    return $result ? $result->phonenumber : null;
+}
+
+function get_current_lead_status($lead_id) {
+    $CI = &get_instance();
+    $CI->db->select('status');
+    $CI->db->from('tblleads');
+    $CI->db->where('id', $lead_id);
+    $query = $CI->db->get();
+    $result = $query->row();
+    
+    return $result ? $result->status : null;
+}
