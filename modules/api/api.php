@@ -4,11 +4,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 Module Name: API
-Module URI: https://codecanyon.net/item/rest-api-for-perfex-crm/25278359
-Description: Rest API module for Perfex CRM
+Description: Rest API module for Buildify ERP
 Version: 2.0.7
-Author: Themesic Interactive
-Author URI: https://1.envato.market/themesic
+Author: Buildify360
+Author URI: https://buildify360.com/
 */
 
 require_once __DIR__.'/vendor/autoload.php';

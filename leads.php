@@ -1,9 +1,9 @@
 <?php
 // Database connection
 $host = 'localhost';
-$dbname = 'u318220648_kautilyadb';
-$username = 'u318220648_kautilyadb';
-$password = 'Nirmaan@1234';
+$dbname = '';
+$username = '';
+$password = '';
 
 date_default_timezone_set('Asia/Kolkata');
 $conn = new mysqli($host, $username, $password, $dbname);

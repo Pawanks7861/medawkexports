@@ -3,11 +3,10 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 /*
 Module Name: Appointly
-Description: Perfex CRM Appointments Module
+Description: Buildify Appointments Module
 Version: 1.1.9
-Author: Aleksandar Stojanov
-Author URI: https://idevalex.com
-Requires at least: 2.4.1
+Author: Buildify360
+Author URI: https://buildify360.com/
 */
 
 $CI = &get_instance();
