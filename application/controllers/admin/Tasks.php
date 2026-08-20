@@ -391,10 +391,11 @@ class Tasks extends AdminController
             $title = _l('New Follow Up');
         } else {
             $data['task'] = $this->tasks_model->get($id);
+            $get_lead_number = get_lead_number($data['task']->rel_id);
             if ($data['task']->rel_type == 'project') {
                 $data['milestones'] = $this->projects_model->get_milestones($data['task']->rel_id);
             }
-            $title = _l('Edit Follow Up') . ' ' . $data['task']->name;
+            $title = _l('Edit Follow Up') . ' ' . $data['task']->name . ' (' . $get_lead_number . ')';
         }
 
         $data['project_end_date_attrs'] = [];
