@@ -251,7 +251,7 @@ foreach ($rResult as $aRow) {
     if (!empty($aRow['rel_name'])) {
         $relName = task_rel_name($aRow['rel_name'], $aRow['rel_id'], $aRow['rel_type']);
         $link = task_rel_link($aRow['rel_id'], $aRow['rel_type']);
-        $outputName .= '<span class="hide"> - </span><a class="tw-text-neutral-700 task-table-related tw-text-sm" data-toggle="tooltip" title="' . _l('task_related_to') . '" href="' . $link . '">' . e($relName) . '</a>';
+        // $outputName .= '<span class="hide"> - </span><a class="tw-text-neutral-700 task-table-related tw-text-sm" data-toggle="tooltip" title="' . _l('task_related_to') . '" href="' . $link . '">' . e($relName) . '</a>';
     }
 
     if ($aRow['recurring'] == 1) {
