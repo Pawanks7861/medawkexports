@@ -1025,7 +1025,7 @@
             </svg>
             <?php echo _l('task_single_assignees'); ?>
         </h4>
-        <?php if (staff_can('edit', 'tasks') ||
+        <?php if (is_admin() && staff_can('edit', 'tasks') ||
                ($task->current_user_is_creator && staff_can('create', 'tasks'))) { ?>
         <div class="simple-bootstrap-select tw-mb-2">
             <select data-width="100%" <?php if ($task->rel_type == 'project') { ?>
