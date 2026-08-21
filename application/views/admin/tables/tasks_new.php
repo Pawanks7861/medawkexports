@@ -22,6 +22,7 @@ $aColumns = [
     0, // bulk actions
     db_prefix() . 'tasks.id as id',
     db_prefix() . 'tasks.name as task_name',
+    1,
     db_prefix() . 'tasks.description as description',
     '(CASE 
         WHEN ' . db_prefix() . 'leads.status = 16 THEN 1
@@ -295,7 +296,8 @@ foreach ($rResult as $aRow) {
     $outputName .= '</div>';
 
     $row[] = $outputName;
-
+    
+    $row[] = get_lead_number($aRow['rel_id']);
     // Description/comments
     $row[] = strip_tags($aRow['description'], '<br><strong>');
 

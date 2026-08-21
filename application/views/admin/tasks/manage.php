@@ -194,7 +194,7 @@ $module_name = 'tasks'; ?>
             "period": "[name='period[]']",
         };
 
-        initDataTable('.table-tasks', admin_url + 'tasks/table_tasks_details', [], [], Params, [4, 'asc']);
+        initDataTable('.table-tasks', admin_url + 'tasks/table_tasks_details', [], [], Params, [5, 'asc']);
 
 
         $.each(Params, function(i, obj) {
